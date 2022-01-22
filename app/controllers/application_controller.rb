@@ -20,6 +20,16 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cart_subtotal_cents
 
+  def enhanced_order
+    @enhanced_order ||= @order.line_items.map {|line_item| { product: Product.find_by(id: line_item.product.id), quantity: line_item.quantity}}
+  end
+  helper_method :enhanced_order
+
+  def order_subtotal_cents
+    enhanced_order.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
+  end
+  helper_method :order_subtotal_cents
+
 
   def update_cart(new_cart)
     cookies[:cart] = {
