@@ -47,6 +47,13 @@
         <li>
           <%= link_to 'About Us', :about_index %>
         </li>
+        <% if current_user %>
+        <li>Signed in as <%= current_user.name %></li>
+        <li><%= link_to "Logout", '/logout' %></li>
+        <% else %>
+        <li><%= link_to 'Login', '/login' %></li>
+        <li><%= link_to 'Signup', '/signup' %></li>
+        <% end %>
       </ul>
     </div>
   </div>
