@@ -48,7 +48,7 @@
           <%= link_to 'About Us', :about_index %>
         </li>
         <% if current_user %>
-        <li>Signed in as <%= current_user.name %></li>
+        <li class= "align_username label label-primary">Signed in as <%= current_user.first_name %> <%= current_user.last_name %></li>
         <li><%= link_to "Logout", '/logout' %></li>
         <% else %>
         <li><%= link_to 'Login', '/login' %></li>
